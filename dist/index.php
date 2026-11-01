@@ -1,0 +1,127 @@
+<?php
+/* RUNE 1.20.114 | Created By @anwarachilles */
+// PHP runs first, then the page below is sent
+$year = date('Y');
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="A website built with Rune, without a framework.">
+<title>RUNE</title>
+  <style>
+/* the page */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: #f4f1ea;
+  background: #0d0d10;
+}
+
+/* background: the image from dist/assets, a dark veil on top */
+#background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(rgba(13, 13, 16, 0.55), rgba(13, 13, 16, 0.85)),
+    url('assets/background.jpg') center / cover no-repeat,
+    radial-gradient(circle at 50% 40%, #2a2733, #0d0d10 70%);
+}
+
+/* header */
+#hero {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#hero.awake {
+  opacity: 1;
+  transform: none;
+}
+
+h1 {
+  font-size: clamp(3.5rem, 14vw, 9rem);
+  font-weight: 800;
+  letter-spacing: 0.35em;
+  margin-right: -0.35em; /* keep the spaced word centered */
+  line-height: 1;
+}
+
+.tagline {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+
+.explore {
+  margin-top: 1rem;
+  padding: 0.7rem 1.4rem;
+  border: 1px solid rgba(244, 241, 234, 0.6);
+  border-radius: 999px;
+  color: inherit;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.explore:hover {
+  background: #f4f1ea;
+  color: #0d0d10;
+}
+
+/* footer */
+footer {
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+  </style>
+</head>
+<body>
+  <!-- background: dist/assets/background.jpg -->
+<div id="background"></div>
+
+<!-- header -->
+<main id="hero">
+  <h1>FORGED</h1>
+  <p class="tagline">Forged through Rune. Built upon PHP.</p>
+  <a class="explore" href="https://github.com/devneet-id/rune" target="_blank">
+    Explore Rune ↗
+  </a>
+</main>
+
+<!-- footer -->
+<footer>
+  Built to create. Designed to evolve. · DEVNEET © <?= $year ?>
+</footer>
+  <script>
+// wake the header once the page is ready
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('hero').classList.add('awake');
+});
+  </script>
+</body>
+</html>
